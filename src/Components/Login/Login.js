@@ -1,39 +1,72 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 const Login = () => {
-
-
-
-
-
-    
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const onSubmit = data => console.log(errors);
     return (
        
 <div class="bg-grey-lighter min-h-screen flex flex-col">
             <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
                 <div class="bg-white px-6 py-8 rounded text-black w-full shadow-2xl">
                     <h1 class="mb-8 text-3xl text-center">Sign Up</h1>
-                    <form action="">
-                    <label htmlFor="" className='mb-2'>Email Id</label>
-                    <input 
+                    <form action="" onSubmit={handleSubmit(onSubmit)}>
+
+                        {/* Email Filed============== */}
+                        <div>
+                        <label htmlFor="" className='mb-2'>Email Id</label>
+                        <input 
                         type="email"
-                        class="block border border-grey-light w-full p-3 rounded mb-4"
+                        class="block outline-none border border-grey-light w-full p-3 rounded mb-2"
                         name="email"
-                        placeholder="Your Email" required/>
-                   <label htmlFor="" className='mb-2'>Phone Number</label>
+                                placeholder="Your Email" {...register("email", {
+                                    pattern:
+                                        {
+                                        value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                                            message:'Input Valid Email'
+                                     }
+                                    , required: {
+                                        value: true,
+                                        message:"Email Field Is Required"
+                                        }
+                                })} />
+                            {errors.email?.type === 'pattern' && <span className='text-red-400'>{errors.email.message}</span>}
+                            {errors.email?.type === 'required' && <span className='text-red-400'>{errors.email.message}</span>}
+                        </div>
+
+                        {/* Phone Number Field============= */}
+                        <div>
+                        <label htmlFor="" className='mb-2'>Phone Number</label>
                     <input 
                         type="number"
-                        class="block border border-grey-light w-full p-3 rounded mb-4"
+                        class="block border outline-none border-grey-light w-full p-3 rounded mb-2"
                         name="number"
-                        placeholder="Phone Number" required/>
-                     <label htmlFor="" className='mb-2'>Password</label>
-                    <div>
-                    <input 
+                                placeholder="Phone Number" {...register("phone", {
+                                    pattern:/^\d{10}$/, required: {
+                                        value: true,
+                                        message:"Number Field Required"
+                                } })} />
+                            {errors.phone?.type === 'pattern' && <span className='text-red-400'>Number Should Be 10 Digit</span>}
+                            {errors.phone?.type === 'required' && <span className='text-red-400'>{errors.phone.message}</span>}
+                       </div>
+                        
+                        {/* PassWord Filed ====================*/}
+                        <div>
+                        <label htmlFor="" className='mb-2'>Password</label>
+                        <input 
                         type="password"
-                        class="block border border-grey-light w-full p-3 rounded mb-2"
+                        class="block border outline-none border-grey-light w-full p-3 rounded mb-2"
                         name="password"
-                            placeholder="Password" required />
-                        <span className='text-end block text-cyan-400 mb-2'>Password Minumum 10 Digit</span>
+                                placeholder="Password" {...register("password", {
+                                    pattern: {
+                                        value: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)/,
+                                        message:"One Uppercase , One lowercase, One Numeric, One Special Character"
+                                    }, required: {
+                                        value: true,
+                                        message:"Password Field Is Required"
+                            } })} />
+                            
+                            {errors.password?.type === 'pattern' && <span className='text-red-400'>{errors.password.message}</span>}
+                            {errors.password?.type === 'required' && <span className='text-red-400'>{errors.password.message}</span>}
                     </div>
                       
                     <button
