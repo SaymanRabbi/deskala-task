@@ -1,11 +1,32 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import {Link } from "react-router-dom";
-
+import {Link, useNavigate } from "react-router-dom";
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 const SignUp = () => {
-    const { register, handleSubmit,  formState: { errors } } = useForm();
+    const navigate = useNavigate()
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const [createUserWithEmailAndPassword, user, , error] = useCreateUserWithEmailAndPassword(auth);
+    if (error) {
+        console.log(error)
+    }
+    if (user) {
+        navigate('/candidate')
+    }
     const onSubmit = data => {
-        console.log(data)
+        createUserWithEmailAndPassword(data.email, data.password)
+        const userData = {
+            email: data.email,
+            password: data.password,
+            phone:data.phone
+        }
+        fetch('http://localhost:5000/user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        }).then(res=>res.json()).then(data=>console.log(data))
     };
     return (   
 <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 min-h-screen flex flex-col">
