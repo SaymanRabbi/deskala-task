@@ -5,6 +5,7 @@
         "Date Of Biarth":"03-01-1999",
         "state":"Rangpur C.O Bazar",
         "Age":23,
+        "result": ["Shortlist","Rejected"],
         "Pin Code":"20121"
     },
     {
@@ -12,6 +13,7 @@
         "Address":"Rangpur Co,Bazar",
         "Date Of Biarth":"03-01-1999",
         "state":"Rangpur C.O Bazar",
+        "result": ["Rejected","Shortlist"],
         "Age":23,
         "Pin Code":"20121"
     },
@@ -20,6 +22,7 @@
         "Address":"Rangpur Co,Bazar",
         "Date Of Biarth":"03-01-1999",
         "state":"Rangpur C.O Bazar",
+        "result": ["Rejected","Shortlist"],
         "Age":23,
         "Pin Code":"20121"
     },
@@ -28,6 +31,7 @@
         "Address":"Rangpur Co,Bazar",
         "Date Of Biarth":"03-01-1999",
         "state":"Rangpur C.O Bazar",
+        "result": ["Rejected","Shortlist"],
         "Age":23,
         "Pin Code":"20121"
     },
@@ -36,6 +40,7 @@
         "Address":"Rangpur Co,Bazar",
         "Date Of Biarth":"03-01-1999",
         "state":"Rangpur C.O Bazar",
+        "result": ["Rejected","Shortlist"],
         "Age":23,
         "Pin Code":"20121"
     },
@@ -44,6 +49,7 @@
         "Address":"Rangpur Co,Bazar",
         "Date Of Biarth":"03-01-1999",
         "state":"Rangpur C.O Bazar",
+        "result": ["Shortlist","Rejected"],
         "Age":23,
         "Pin Code":"20121"
     }

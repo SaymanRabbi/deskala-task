@@ -3,6 +3,7 @@ import SignUp from './Components/SignUp/SignUp';
 import { Routes, Route} from "react-router-dom";
 import Login from './Components/Login/Login';
 import Candidate from './Components/Candidate/Candidate';
+import CandidateCreation from './Components/CandidateCreation/CandidateCreation';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path='/' element={<Login/>}></Route>
         <Route path='/signup' element={<SignUp/>}></Route>
         <Route path='/candidate' element={<Candidate/>}></Route>
+        <Route path='/candidateform' element={<CandidateCreation/>}></Route>
       </Routes>
     </div>
   );
