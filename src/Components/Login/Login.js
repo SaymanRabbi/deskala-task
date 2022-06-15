@@ -1,10 +1,21 @@
 import React from 'react';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
-import {Link } from "react-router-dom";
+import {Link, useLocation } from "react-router-dom";
+import auth from '../../firebase.init';
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+    let location = useLocation();
+    const navigate = useNavigate()
+    let from = location.state?.from?.pathname || "/";
+    const [
+        signInWithEmailAndPassword, user] = useSignInWithEmailAndPassword(auth);
+    if (user) {
+        navigate(from, { replace: true });
+    }
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
-        console.log(data)
+        signInWithEmailAndPassword(data.email,data.password)
     };
     return (
         <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 min-h-screen flex flex-col">
@@ -45,12 +56,12 @@ const Login = () => {
                                 pattern: {
                                     value: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)/,
                                     message:"One Uppercase , One lowercase, One Numeric, One Special Character"
-                                }, required: {
+                                },min:6, required: {
                                     value: true,
                                     message:"Password Field Is Required"
                         } })} />
                         
-                        {errors.password?.type === 'pattern' && <span className='text-red-400'>{errors.password.message}</span>}
+                            {errors.password?.type === 'pattern' && <span className='text-red-400'>{errors.password.message}</span>}
                         {errors.password?.type === 'required' && <span className='text-red-400'>{errors.password.message}</span>}
                 </div>
                   
