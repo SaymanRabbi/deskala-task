@@ -4,12 +4,12 @@ import { useQuery, } from 'react-query'
 import {Link} from "react-router-dom";
 const Candidate = () => {
 
-  const { data, isLoading,refetch} = useQuery('cadidatedata', () => fetch('http://localhost:5000/candidate').then(res => res.json()))
+  const { data, isLoading,refetch} = useQuery('cadidatedata', () => fetch('https://deskala-server.herokuapp.com/candidate').then(res => res.json()))
   if (isLoading) {
     return
   }
   const deletecandidate =(id) => {
-    fetch(`http://localhost:5000/candidate?id=${id}`, {
+    fetch(`https://deskala-server.herokuapp.com/candidate?id=${id}`, {
       method: "DELETE"
     }).then(res => res.json()).then(data => {
       console.log(data)

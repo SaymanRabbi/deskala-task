@@ -20,7 +20,7 @@ const SignUp = () => {
             password: data.password,
             phone:data.phone
         }
-        fetch('http://localhost:5000/user', {
+        fetch('https://deskala-server.herokuapp.com/user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

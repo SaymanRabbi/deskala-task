@@ -18,7 +18,7 @@ const CandidateCreation = () => {
         const candidatedata = {
             name,address,email,age,pin,date
         } 
-        fetch('http://localhost:5000/candidate', {
+        fetch('https://deskala-server.herokuapp.com/candidate', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
